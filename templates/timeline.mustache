@@ -14,12 +14,37 @@
     You should have received a copy of the GNU General Public License
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
+<div><a href="#now"><strong>{{#str}}now, block_timeline{{/str}}</strong></a></div>
 <div id="timeline-timeline">
+    {{# previousevents }}
+        <div class="card">
+            <p>
+                <strong>{{{ name }}}</strong><br/>
+                {{{ time }}}
+            </p>
+            <p>{{{ description }}}</p>
+        </div>
+    {{/ previousevents}}
+        <div class="card now">
+            <strong>{{#str}}now, block_timeline{{/str}}</strong>
+        </div>
     {{# events }}
         <div class="card">
-            <p><strong>{{{ name }}}</strong></p>
-            <p>{{{ description }}}</p>
-            {{{ time }}}
+            <div class="timeline-picture">{{{ icon }}}</div>
+            <div class="event-details">
+                <p>
+                    <strong>{{{ title }}}</strong><br/>
+                    {{{ time }}}
+                </p>
+            </div>
+            <div class="event-description">
+                <p>{{{ description }}}</p>
+            </div>
+            {{# courselink }}
+            <div class="card-footer">
+                <p>{{{ courselink }}}</p>
+            </div>
+            {{/ courselink}}
         </div>
     {{/ events}}
 </div>

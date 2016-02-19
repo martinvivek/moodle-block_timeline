@@ -6,6 +6,34 @@
     background-color: #FFF;
     border: 1px solid #e5e5e5;
     border-radius: 3px;
-    min-height: 50px;
     padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.card.now {
+    background-color: #fefefe;
+}
+.timeline-picture {
+    float: left;
+    margin-bottom: 0.3em;
+}
+.timeline-picture img.icon {
+    width: 3em;
+    height: 3em;
+}
+.event-details {
+    float: left;
+}
+.event-description {
+    clear: left;
+}
+.card-footer {
+    border-top: #ccc 1px solid;
+    margin-left: -1em;
+    margin-right: -1em;
+    margin-bottom: -1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.9em;
+    background-color: #fefefe;
 }

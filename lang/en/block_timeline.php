@@ -25,3 +25,4 @@
 $string['timeline:addinstance'] = 'Add a new timeline block';
 $string['timeline:myaddinstance'] = 'Add a new timeline block to Dashboard';
 $string['pluginname'] = 'Timeline';
+$string['now'] = 'Now';

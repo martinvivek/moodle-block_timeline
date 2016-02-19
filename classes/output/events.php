@@ -59,6 +59,13 @@ class events implements templatable {
      * @return stdClass
      */
     public function export_for_template(renderer_base $output) {
+        foreach ($this->events as $event) {
+            if (empty($event->referer)) {
+                $event->title = $event->name;
+            } else {
+                $event->title = $event->referer;
+            }
+        }
         return (object)array(
             'events' => $this->events,
         );

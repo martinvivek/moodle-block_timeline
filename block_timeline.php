@@ -62,7 +62,6 @@ class block_timeline extends block_base {
 
         } else {
             $courseshown = $this->page->course->id;
-            $context = context_course::instance($courseshown);
             if ($courseshown == SITEID) {
                 // Being displayed at site level. This will cause the filter to fall back to auto-detecting
                 // the list of courses it will be grabbing events from.
@@ -79,7 +78,7 @@ class block_timeline extends block_base {
         if (isset($CFG->calendar_lookahead)) {
             $defaultlookahead = intval($CFG->calendar_lookahead);
         }
-        $lookahead = get_user_preferences('calendar_lookahead', $defaultlookahead);
+        $lookahead = get_user_preferences('calendar_lookahead', $defaultlookahead) + 100000;
 
         $defaultmaxevents = CALENDAR_DEFAULT_UPCOMING_MAXEVENTS;
         if (isset($CFG->calendar_maxevents)) {
@@ -89,9 +88,10 @@ class block_timeline extends block_base {
         $events = calendar_get_upcoming($courses, $group, $user, $lookahead, $maxevents);
 
         if (!empty($this->instance)) {
-            $link = 'view.php?view=day&amp;course='.$courseshown.'&amp;';
             $showcourselink = ($this->page->course->id == SITEID);
-            $export = $events;
+            for ($i = 0; $i < count($events); $i++) {
+                $events[$i] = calendar_add_event_metadata($events[$i]);
+            }
             $events_renderable = new block_timeline\output\events($events);
             $renderer = $this->page->get_renderer('block_timeline');
             $this->content->text = $renderer->render_events($events_renderable);
