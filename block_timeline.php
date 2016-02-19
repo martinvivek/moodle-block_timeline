@@ -17,17 +17,17 @@
 /**
  * Handles displaying the calendar upcoming events block.
  *
- * @package    block_calendar_upcoming
+ * @package    block_timeline
  * @copyright  2004 Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class block_calendar_upcoming extends block_base {
+class block_timeline extends block_base {
 
     /**
      * Initialise the block.
      */
     public function init() {
-        $this->title = get_string('pluginname', 'block_calendar_upcoming');
+        $this->title = get_string('pluginname', 'block_timeline');
     }
 
     /**

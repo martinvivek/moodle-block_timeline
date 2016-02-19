@@ -15,13 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'block_calendar_upcoming', language 'en', branch 'MOODLE_20_STABLE'
+ * Strings for component 'block_timeline', language 'en', branch 'MOODLE_20_STABLE'
  *
- * @package   block_calendar_upcoming
+ * @package   block_timeline
  * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['calendar_upcoming:addinstance'] = 'Add a new upcoming events block';
-$string['calendar_upcoming:myaddinstance'] = 'Add a new upcoming events block to Dashboard';
-$string['pluginname'] = 'Upcoming events';
+$string['timeline:addinstance'] = 'Add a new timeline block';
+$string['timeline:myaddinstance'] = 'Add a new timeline block to Dashboard';
+$string['pluginname'] = 'Timeline';

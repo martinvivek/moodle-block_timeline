@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * This file keeps track of upgrades to the calendar_upcoming block
+ * This file keeps track of upgrades to the timeline block
  *
  * Sometimes, changes between versions involve alterations to database structures
  * and other major things that may break installations.
@@ -32,22 +32,22 @@
  * before any action that may take longer time to finish.
  *
  * @since Moodle 2.8
- * @package block_calendar_upcoming
+ * @package block_timeline
  * @copyright 2014 Andrew Davis
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * Upgrade the calendar_upcoming block
+ * Upgrade the timeline block
  * @param int $oldversion
  * @param object $block
  */
-function xmldb_block_calendar_upcoming_upgrade($oldversion, $block) {
+function xmldb_block_timeline_upgrade($oldversion, $block) {
     global $DB;
 
     if ($oldversion < 2014062600) {
         // Add this block the default blocks on /my.
-        $blockname = 'calendar_upcoming';
+        $blockname = 'timeline';
 
         // Do not try to add the block if we cannot find the default my_pages entry.
         // Private => 1 refers to MY_PAGE_PRIVATE.
