@@ -30,6 +30,16 @@ class block_timeline extends block_base {
         $this->title = get_string('pluginname', 'block_timeline');
     }
 
+    function user_can_addto($page) {
+        // Don't allow people to add the block if they can't even use it
+        /*if (!has_capability('moodle/timeline:add', $page->context)) {
+            return false;
+        }*/
+        return $page->pagelayout == 'mydashboard';
+
+        return parent::user_can_addto($page);
+    }
+
     /**
      * Return the content of this block.
      *
@@ -43,8 +53,7 @@ class block_timeline extends block_base {
         if ($this->content !== null) {
             return $this->content;
         }
-        $this->content = new stdClass;
-        $this->content->text = '';
+        $this->content = new stdClass();
 
         $filtercourse    = array();
         if (empty($this->instance)) { // Overrides: use no course at all.
@@ -53,15 +62,7 @@ class block_timeline extends block_base {
 
         } else {
             $courseshown = $this->page->course->id;
-            $this->content->footer = '<div class="gotocal"><a href="'.$CFG->wwwroot.
-                                     '/calendar/view.php?view=upcoming&amp;course='.$courseshown.'">'.
-                                      get_string('gotocalendar', 'calendar').'</a>...</div>';
             $context = context_course::instance($courseshown);
-            if (has_any_capability(array('moodle/calendar:manageentries', 'moodle/calendar:manageownentries'), $context)) {
-                $this->content->footer .= '<div class="newevent"><a href="'.$CFG->wwwroot.
-                                          '/calendar/event.php?action=new&amp;course='.$courseshown.'">'.
-                                           get_string('newevent', 'calendar').'</a>...</div>';
-            }
             if ($courseshown == SITEID) {
                 // Being displayed at site level. This will cause the filter to fall back to auto-detecting
                 // the list of courses it will be grabbing events from.
@@ -90,7 +91,10 @@ class block_timeline extends block_base {
         if (!empty($this->instance)) {
             $link = 'view.php?view=day&amp;course='.$courseshown.'&amp;';
             $showcourselink = ($this->page->course->id == SITEID);
-            $this->content->text = calendar_get_block_upcoming($events, $link, $showcourselink);
+            $export = $events;
+            $events_renderable = new block_timeline\output\events($events);
+            $renderer = $this->page->get_renderer('block_timeline');
+            $this->content->text = $renderer->render_events($events_renderable);
         }
 
         if (empty($this->content->text)) {
